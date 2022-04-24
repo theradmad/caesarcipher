@@ -1,34 +1,30 @@
-import sys
-
-def cypher():
-  n = check(sys.argv)
-  plain = input('plaintext: ')
-  print()
-  print('Ciphered text: \n')
-
-  ciphered = caesar(plain, n)
-
-  for start in range(0, len(ciphered), 50):
-    line = ciphered[start:start+50]
-    for x in range(0, len(line), 5):
-      block = ciphered[line + x : line + x + 5]
-      print(''.join(block), end=' ')
-    print()
-
-
-def caesar(plain, n):
-  plain = plain.upper
+def cipher(msg, key):  
   c = []
-  for letter in plain:
-    if not letter.isalpha():
-      continue
-    offset = 65
-    pi = ord(letter) - offset
-    ci = (pi + n) % 26
-    c.append(chr(ci+offset))
-  return c
+  final = ""
+  msg = msg.upper()
+  for i in range(0, len(msg)):
+   if ord(msg[i])>=65 and ord(msg[i]) <=90:
+     char_ord = ((ord(msg[i]) + key -65)) % 26 + 65    
+     char= chr(char_ord )
+     c.append(char)
+  
+  for i in range(0,len(c), 5):  
+      if i == 0 :    
+        final = c[i:5]
+        print(("".join(final)), end = " ") 
+       
+      elif i % 50 != 0:       
+        j = i + 5
+        final = c[i:j]
+        print(("".join(final)), end = " ")
+        
+      else: 
+        print("")
+        j = i + 5
+        final = c[i:j]
+        print(("".join(final)), end = " ")  
+  return ""
+      
 
-def check(arg):
-  if len(arg) != 2 or arg[1].isalpha():
-    exit('Usage is as follows ==> python caesar.py k')
-  return int(arg[1])
+
+
