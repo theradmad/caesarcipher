@@ -1,11 +1,12 @@
 def cipher(msg, key):  
-  c = []
+  c = [] #ciphered text
   final = ""
-  msg = msg.upper()
+  msg = msg.upper() #plaintext in all uppercase
+  
   for i in range(0, len(msg)):
    if ord(msg[i])>=65 and ord(msg[i]) <=90:
-     char_ord = ((ord(msg[i]) + key -65)) % 26 + 65    
-     char= chr(char_ord )
+     char_ord = ((ord(msg[i])+key-65)) % 26 +65    
+     char= chr(char_ord)
      c.append(char)
   
   for i in range(0,len(c), 5):  
